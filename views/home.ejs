@@ -1,0 +1,33 @@
+<%- include("partials/header"); -%>                  
+<!-- adding ejs layout partials. -->
+
+<h1>Home</h1>
+<p> <%= homeContent %> </p>
+
+<%# console.log(contents) %> 
+
+<%# for(var i = 0; i<contents.length; i++) { %>
+   <%# console.log(contents[i].title); %>
+<%# } %>
+
+<!-- forEach loop in javascript shown below -->
+
+<% contents.forEach(function(post){ %>
+    <%# console.log(post.title); %>
+
+    <h1 > <%= post.title %> </h1>
+
+    
+    <% var preview = post.content; %>
+    <% if(preview.length > 100){ %>
+        <% preview = preview.substring(0,100) + "..." ; %>
+        <% } %>
+        
+        <p style="display: inline-block;" > <%= preview %> <a href="posts/<%=post.title%> ">Read More</a></p> 
+        
+        <form action="/delete/<%=post._id%>" style="display: inline-block;" >
+            <button class="btn btn-sm btn-danger" style="display: inline-block;  margin-left: 150px;"> Delete Post  </button>
+        </form>
+<% }); %>
+
+<%- include("partials/footer"); -%> 
